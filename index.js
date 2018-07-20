@@ -1,4 +1,5 @@
 'use strict';
+/*global $ */
 //user stories:
 //store variable containing current shopping list items
 const store = [
@@ -18,8 +19,11 @@ function renderShoppingList(store) {
 }
 function generateString(store){
   console.log('generateString ran');
-  return store.map(function(obj) {
-    return `<li>${obj.item}</li>`;
+  return store.map(function(obj, index) {
+    if (obj.checked===false) {
+      return `<li data="${index}">${obj.item}</li>`;
+    } else {
+      return `<li data="${index}" class="shopping-item__checked">${obj.item}</li>`; }
   });
 }
 //Handling adding new items--take input and add to the list
