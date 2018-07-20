@@ -42,19 +42,27 @@ function compileShoppingListStrings(arr) {
   const elements = arr.map(function(obj, index) {
     return generateItemElement(obj, index);
   });
-  return elements.join();
+  return elements.join('');
+}
+function addItemToStore(newItem) {
+  const newShoppingItemObj = {
+    item: newItem,
+    checked: false
+  };
+  store.push(newShoppingItemObj);
 }
 
-
-
-
-
-
-
-//Handling adding new items--take input and add to the list
+// Handling adding new items--take input and add to the list
 function handleNewItems(){
-  console.log('handleNewItems ran');
+  $('button, input[type="submit"]').on('click', function(){
+    event.preventDefault();
+    const newItemName = $('.js-shopping-list-entry').val();
+    $('.js-shopping-list-entry').val('');
+    addItemToStore(newItemName);
+    renderShoppingList(store);
+  });
 }
+
 //Be able to cross items off the list
 function itemStrikethrough(){
   console.log('itemStrikethrough ran');
