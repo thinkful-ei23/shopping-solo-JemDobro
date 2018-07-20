@@ -13,37 +13,39 @@ const store = [
   //function(generateString for this and then pass it in to renderShoppingList()).
 function renderShoppingList(store) {
   // console.log('renderShoppingList ran');
-  let genString = generateString(store);
+  let genString = compileShoppingListStrings(store);
   console.log(genString);
   $('.js-shopping-list').html(genString);
 }
 //function1: a function that generates a string of html element
 //function2: maps over store applies function1 
 
-function generateItemElement(){
-  return 
+function generateItemElement(obj, index){
+  console.log('generateItemElement ran');
+  return `
+    <li class="js-item-index-element" data-item-index="${index}">
+      <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle js-item-toggle">
+          <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete js-item-delete">
+          <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>`;
 }
-function 
-
-
-
-function generateString(store){
-  console.log('generateString ran');
-  return store.map(function(obj, index) {
-    return `
-      <li class="js-item-index-element" data-item-index="${index}">
-        <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
-        <div class="shopping-item-controls">
-          <button class="shopping-item-toggle js-item-toggle">
-            <span class="button-label">check</span>
-          </button>
-          <button class="shopping-item-delete js-item-delete">
-            <span class="button-label">delete</span>
-          </button>
-        </div>
-      </li>`;
+function compileShoppingListStrings(arr) {
+  //iterate over the Store array and run generateItemElement on each object
+  //return the resulting elements
+  console.log('compileShoppingListStrings ran');
+  const elements = arr.map(function(obj, index) {
+    return generateItemElement(obj, index);
   });
+  return elements.join();
 }
+
+
 
 
 
