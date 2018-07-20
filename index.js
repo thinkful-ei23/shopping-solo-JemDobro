@@ -12,16 +12,13 @@ const store = [
   //For each item in the array 'store', generate a string representing an <li>--we will write
   //function(generateString for this and then pass it in to renderShoppingList()).
 function renderShoppingList(store) {
-  // console.log('renderShoppingList ran');
   let genString = compileShoppingListStrings(store);
-  console.log(genString);
   $('.js-shopping-list').html(genString);
 }
 //function1: a function that generates a string of html element
 //function2: maps over store applies function1 
 
 function generateItemElement(obj, index){
-  console.log('generateItemElement ran');
   return `
     <li class="js-item-index-element" data-item-index="${index}">
       <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
@@ -38,7 +35,6 @@ function generateItemElement(obj, index){
 function compileShoppingListStrings(arr) {
   //iterate over the Store array and run generateItemElement on each object
   //return the resulting elements
-  console.log('compileShoppingListStrings ran');
   const elements = arr.map(function(obj, index) {
     return generateItemElement(obj, index);
   });
@@ -54,7 +50,7 @@ function addItemToStore(newItem) {
 
 // Handling adding new items--take input and add to the list
 function handleNewItems(){
-  $('button, input[type="submit"]').on('click', function(){
+  $('#js-shopping-list-form').submit(function(event){
     event.preventDefault();
     const newItemName = $('.js-shopping-list-entry').val();
     $('.js-shopping-list-entry').val('');
@@ -63,9 +59,25 @@ function handleNewItems(){
   });
 }
 
+// function getItemIndexFromElement(checkbox) {
+//   const itemIndexString = $(checkbox)
+//     .closest('.js-item-index-element')
+//     .attr('data-item-index');
+//   return parseInt(itemIndexString, 10);
+// }
+
 //Be able to cross items off the list
 function itemStrikethrough(){
-  console.log('itemStrikethrough ran');
+  //listen for click
+  // $('.js-shopping-list').on('click', 'js-item-toggle', event => {
+  //   const itemIndex = getItemIndexFromElement(event.currentTarget);
+  //   console.log(itemIndex);
+  // });
+  
+  //retrieve item's index in store from the data attribute
+  //toggle the checked property for the item at that index in store
+  //re-render the shopping list
+
 }
 //Be able to delete items from the list
 function itemDeleted() {
