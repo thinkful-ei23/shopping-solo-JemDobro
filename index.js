@@ -7,8 +7,17 @@ const store = [
 ];
 
 //Render the shopping list
-function renderShoppingList() {
+  //Target the '.js-shopping-list' element and insert <li>s inside
+  //For each item in the array 'store', generate a string representing an <li>--we will write
+  //function(generateString for this and then pass it in to renderShoppingList()).
+function renderShoppingList(store) {
+  store.map(generateString());
   console.log('renderShoppingList ran');
+}
+
+function generateString(obj){
+  console.log(`<li>${obj.item}
+  </li>`);
 }
 //Handling adding new items--take input and add to the list
 function handleNewItems(){
