@@ -1,5 +1,11 @@
 'use strict';
 //user stories:
+//store variable containing current shopping list items
+const store = [
+  { item: 'Papayas', checked: false },
+  { item: 'Hummus', checked: true }
+];
+
 //Render the shopping list
 function renderShoppingList() {
   console.log('renderShoppingList ran');
