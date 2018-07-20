@@ -17,15 +17,38 @@ function renderShoppingList(store) {
   console.log(genString);
   $('.js-shopping-list').html(genString);
 }
+//function1: a function that generates a string of html element
+//function2: maps over store applies function1 
+
+function generateItemElement(){
+  return 
+}
+function 
+
+
+
 function generateString(store){
   console.log('generateString ran');
   return store.map(function(obj, index) {
-    if (obj.checked===false) {
-      return `<li data="${index}">${obj.item}</li>`;
-    } else {
-      return `<li data="${index}" class="shopping-item__checked">${obj.item}</li>`; }
+    return `
+      <li class="js-item-index-element" data-item-index="${index}">
+        <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
+        <div class="shopping-item-controls">
+          <button class="shopping-item-toggle js-item-toggle">
+            <span class="button-label">check</span>
+          </button>
+          <button class="shopping-item-delete js-item-delete">
+            <span class="button-label">delete</span>
+          </button>
+        </div>
+      </li>`;
   });
 }
+
+
+
+
+
 //Handling adding new items--take input and add to the list
 function handleNewItems(){
   console.log('handleNewItems ran');
