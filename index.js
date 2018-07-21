@@ -58,26 +58,23 @@ function handleNewItems(){
     renderShoppingList(store);
   });
 }
-
-// function getItemIndexFromElement(checkbox) {
-//   const itemIndexString = $(checkbox)
-//     .closest('.js-item-index-element')
-//     .attr('data-item-index');
-//   return parseInt(itemIndexString, 10);
-// }
+function toggleCheckedForListItem(itemIndex) {
+  return (store[itemIndex].checked  === true ? store[itemIndex].checked  = false : store[itemIndex].checked  = true);
+}
+function getItemIndexFromElement(item) {
+  const itemIndexString = $(item)
+    .closest('.js-item-index-element')
+    .attr('data-item-index');
+  return parseInt(itemIndexString, 10);
+}
 
 //Be able to cross items off the list
 function itemStrikethrough(){
-  //listen for click
-  // $('.js-shopping-list').on('click', 'js-item-toggle', event => {
-  //   const itemIndex = getItemIndexFromElement(event.currentTarget);
-  //   console.log(itemIndex);
-  // });
-  
-  //retrieve item's index in store from the data attribute
-  //toggle the checked property for the item at that index in store
-  //re-render the shopping list
-
+  $('.js-shopping-list').on('click', '.js-item-toggle', function(event) {  
+    const itemIndex = getItemIndexFromElement(event.currentTarget);
+    toggleCheckedForListItem(itemIndex);
+    renderShoppingList(store);
+  });
 }
 //Be able to delete items from the list
 function itemDeleted() {
