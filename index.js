@@ -76,9 +76,18 @@ function itemStrikethrough(){
     renderShoppingList(store);
   });
 }
-//Be able to delete items from the list
+//Be able to delete items from the list 
+//listen for click event
+//get index of item
+//delete whole li element that index represents
 function itemDeleted() {
-  console.log('itemDeleted ran');
+  $('.js-shopping-list').on('click', '.js-item-delete', function(event) {
+    const itemIndex = getItemIndexFromElement(event.currentTarget);
+    console.log('delete button clicked', itemIndex);
+    store.splice(itemIndex, 1);
+    renderShoppingList(store);
+  });
+  
 }
 
 function handleShoppingList(){
