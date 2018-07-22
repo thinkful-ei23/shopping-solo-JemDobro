@@ -23,6 +23,9 @@ function generateItemElement(obj, index){
     <li class="js-item-index-element" data-item-index="${index}">
       <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
       <div class="shopping-item-controls">
+        <button class="shopping-item-edit js-item-edit">
+          <span class="button-label">check</span>
+        </button>
         <button class="shopping-item-toggle js-item-toggle">
           <span class="button-label">check</span>
         </button>
