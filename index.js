@@ -97,5 +97,7 @@ function handleShoppingList(){
   itemDeleted();
 }
 
+console.log('test2');
+
 handleShoppingList();
 
