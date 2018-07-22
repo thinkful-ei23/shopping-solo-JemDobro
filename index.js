@@ -58,6 +58,16 @@ function handleNewItems(){
     renderShoppingList(store);
   });
 }
+
+//Add search functionality as user enters text to add new item--this will filter the displayed list by 
+//item names only containing that search item.
+  //will need to connect only to items that are displayed(unchecked)
+  //then filter those displayed items as user enters text--use .keyup & .filter?
+function searchFilter() {
+
+}
+
+
 function toggleCheckedForListItem(itemIndex) {
   return (store[itemIndex].checked  === true ? store[itemIndex].checked  = false : store[itemIndex].checked  = true);
 }
@@ -76,6 +86,14 @@ function itemStrikethrough(){
     renderShoppingList(store);
   });
 }
+
+//Be able to press a switch/checkbox to toggle between displaying all items or displaying only items 
+//that are unchecked.
+  //add a new button/checkbox outside of the <li>s
+  //create an event listener that when box is checked:
+  //iterate through store to see if value of 'checked' key is true, and if yes, hide that <li>, and rerender
+  //the shopping list
+
 //Be able to delete items from the list 
 //listen for click event
 //get index of item
