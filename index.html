@@ -11,11 +11,17 @@
 <body>
     <div class="container">
         <h1>Shopping List</h1>
-        <form id="js-shopping-list-form">
-            <label for="shopping-list-entry">Add an item</label>
-            <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
-            <button type="submit">Add item</button>
-        </form>
+        <div>
+            <form id="js-shopping-list-form">
+                <label for="shopping-list-entry">Add an item</label>
+                <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
+                <button type="submit">Add item</button>
+            </form>
+        </div>
+        <div>
+            <input type="checkbox" name="hide-checked?" value=false id="js-hide-checked-form">
+            <label for="js-hide-checked-form">Click to hide checked items</label>          
+        </div>
         <ul class="shopping-list js-shopping-list">
         </ul>
     </div>

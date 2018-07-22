@@ -53,3 +53,7 @@
   #js-edit-item-form {
     display: inline-block;
   }
+
+  #js-shopping-list-form {
+    margin-bottom: 10px;
+  }

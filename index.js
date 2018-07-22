@@ -109,6 +109,10 @@ function itemDeleted() {
     store.splice(itemIndex, 1);
     renderShoppingList(store);
   });
+}
+
+//Handle edit item form
+function handleEditItemForm() {
   
 }
 
