@@ -49,3 +49,7 @@
   .shopping-item__checked {
     text-decoration: line-through;
   }
+
+  #js-edit-item-form {
+    display: inline-block;
+  }

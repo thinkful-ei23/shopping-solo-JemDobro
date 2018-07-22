@@ -23,14 +23,15 @@ function generateItemElement(obj, index){
     <li class="js-item-index-element" data-item-index="${index}">
       <span class="shopping-item js-shopping-item ${obj.checked ? 'shopping-item__checked' : ''}">${obj.item}</span>
       <div class="shopping-item-controls">
-        <button class="shopping-item-edit js-item-edit">
-          <span class="button-label">edit</span>
-        </button>
+        <form id="js-edit-item-form">
+            <input type="text" name="edit-item-entry" class="js-edit-item-entry" placeholder="edited name for this item">
+            <button type="submit">Edit item</button>
+        </form>
         <button class="shopping-item-toggle js-item-toggle">
-          <span class="button-label">check</span>
+          <span class="button-label">Check</span>
         </button>
         <button class="shopping-item-delete js-item-delete">
-          <span class="button-label">delete</span>
+          <span class="button-label">Delete</span>
         </button>
       </div>
     </li>`;
