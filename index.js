@@ -3,6 +3,7 @@
 //user stories:
 //store variable containing current shopping list items
 const store = [
+  { hideChecked: false },
   { item: 'Papayas', checked: false },
   { item: 'Hummus', checked: true }
 ];
@@ -98,18 +99,17 @@ function itemStrikethrough(){
   //iterate through store to see if value of 'checked' key is true, and if yes, hide that <li>, and rerender
   //the shopping list
 
-function handlehideCheckedItems() {
+function toggleHideCheckedItems(itemIndex) {
+  return (store[itemIndex].hideChecked  === true ? store[itemIndex].hideChecked  = false : store[itemIndex].hideChecked  = true);
+}
+
+function handleHideCheckedItems() {
   $('#js-hide-checked-form').on('change', function() { 
-    console.log('handlehideCheckedItems ran', $('#js-hide-checked-form').val());
-    const uncheckedValue = $('#js-hide-checked-form').val();
-    let checkedValue = !uncheckedValue;
-    console.log(`uncheckedValue is ${uncheckedValue}, checkedValue is ${checkedValue}`);
-    if (checkedValue === true) {
-      const uncheckedObjects = store.map(element=>element.checked===false);
-      console.log(uncheckedObjects);
-    }    
-    renderShoppingList(store);
+    const itemIndex = getItemIndexFromElement(event.currentTarget);
+    toggleHideCheckedItems(itemIndex);
+    console.log('handlehideCheckedItems ran after 1', store);
   });
+  renderShoppingList(store);
 }
 
 //Be able to delete items from the list 
@@ -135,7 +135,7 @@ function handleShoppingList(){
   handleNewItems();
   itemStrikethrough();
   itemDeleted();
-  handlehideCheckedItems();
+  handleHideCheckedItems();
 }
 
 handleShoppingList();
