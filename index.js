@@ -3,8 +3,8 @@
 //user stories:
 //store variable containing current shopping list items
 const store = [
-  { item: 'Papayas', checked: false },
-  { item: 'Hummus', checked: true }
+  { item: 'Papayas', checked: false, hideChecked: false },
+  { item: 'Hummus', checked: true, hideChecked: false }
 ];
 
 //Render the shopping list
@@ -14,6 +14,7 @@ const store = [
 function renderShoppingList(store) {
   let genString = compileShoppingListStrings(store);
   $('.js-shopping-list').html(genString);
+  console.log(store);
 }
 //function1: a function that generates a string of html element
 //function2: maps over store applies function1 
@@ -93,10 +94,28 @@ function itemStrikethrough(){
 
 //Be able to press a switch/checkbox to toggle between displaying all items or displaying only items 
 //that are unchecked.
-  //add a new button/checkbox outside of the <li>s
   //create an event listener that when box is checked:
   //iterate through store to see if value of 'checked' key is true, and if yes, hide that <li>, and rerender
   //the shopping list
+function updateHideCheckedToStore(arr) {
+  let checkedval = $('#js-hide-checked-form').val();
+  console.log(checkedval);
+  return arr.map(function() {
+    console.log('map function ran')
+    let updated = {item: 'this.name', checked: 'this.checked', hideChecked: checkedval};
+    return updated;
+  });
+}
+
+function handlehideCheckedItems() {
+  $('#js-hide-checked-form').on('change', function() { 
+    updateHideCheckedToStore(store); 
+    console.log('handlehideCheckedItems ran', store);
+    //$('#js-hide-checked-form').val() = !$('#js-hide-checked-form').val();
+    // updateHideCheckedToStore(store);
+    renderShoppingList(store);
+  });
+}
 
 //Be able to delete items from the list 
 //listen for click event
@@ -113,7 +132,7 @@ function itemDeleted() {
 
 //Handle edit item form
 function handleEditItemForm() {
-  
+
 }
 
 function handleShoppingList(){
@@ -121,6 +140,7 @@ function handleShoppingList(){
   handleNewItems();
   itemStrikethrough();
   itemDeleted();
+  handlehideCheckedItems();
 }
 
 handleShoppingList();
