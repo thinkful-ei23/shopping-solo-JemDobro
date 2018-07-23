@@ -3,8 +3,8 @@
 //user stories:
 //store variable containing current shopping list items
 const store = [
-  { item: 'Papayas', checked: false, hideChecked: false },
-  { item: 'Hummus', checked: true, hideChecked: false }
+  { item: 'Papayas', checked: false },
+  { item: 'Hummus', checked: true }
 ];
 
 //Render the shopping list
@@ -97,22 +97,17 @@ function itemStrikethrough(){
   //create an event listener that when box is checked:
   //iterate through store to see if value of 'checked' key is true, and if yes, hide that <li>, and rerender
   //the shopping list
-function updateHideCheckedToStore(arr) {
-  let checkedval = $('#js-hide-checked-form').val();
-  console.log(checkedval);
-  return arr.map(function() {
-    console.log('map function ran')
-    let updated = {item: 'this.name', checked: 'this.checked', hideChecked: checkedval};
-    return updated;
-  });
-}
 
 function handlehideCheckedItems() {
   $('#js-hide-checked-form').on('change', function() { 
-    updateHideCheckedToStore(store); 
-    console.log('handlehideCheckedItems ran', store);
-    //$('#js-hide-checked-form').val() = !$('#js-hide-checked-form').val();
-    // updateHideCheckedToStore(store);
+    console.log('handlehideCheckedItems ran', $('#js-hide-checked-form').val());
+    const uncheckedValue = $('#js-hide-checked-form').val();
+    let checkedValue = !uncheckedValue;
+    console.log(`uncheckedValue is ${uncheckedValue}, checkedValue is ${checkedValue}`);
+    if (checkedValue === true) {
+      const uncheckedObjects = store.map(element=>element.checked===false);
+      console.log(uncheckedObjects);
+    }    
     renderShoppingList(store);
   });
 }
