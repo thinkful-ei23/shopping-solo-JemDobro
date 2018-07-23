@@ -3,7 +3,6 @@
 //user stories:
 //store variable containing current shopping list items
 const store = [
-  { hideChecked: false },
   { item: 'Papayas', checked: false },
   { item: 'Hummus', checked: true }
 ];
@@ -69,9 +68,6 @@ function handleNewItems(){
 //item names only containing that search item.
   //will need to connect only to items that are displayed(unchecked)
   //then filter those displayed items as user enters text--use .keyup & .filter?
-function searchFilter() {
-
-}
 
 
 function toggleCheckedForListItem(itemIndex) {
@@ -96,20 +92,17 @@ function itemStrikethrough(){
 //Be able to press a switch/checkbox to toggle between displaying all items or displaying only items 
 //that are unchecked.
   //create an event listener that when box is checked:
-  //iterate through store to see if value of 'checked' key is true, and if yes, hide that <li>, and rerender
-  //the shopping list
-
-function toggleHideCheckedItems(itemIndex) {
-  return (store[itemIndex].hideChecked  === true ? store[itemIndex].hideChecked  = false : store[itemIndex].hideChecked  = true);
-}
+  //use class attached to checked items, go to the parent element and hide that <li>.
+  //When box is not checked, show all <li>s.
 
 function handleHideCheckedItems() {
-  $('#js-hide-checked-form').on('change', function() { 
-    const itemIndex = getItemIndexFromElement(event.currentTarget);
-    toggleHideCheckedItems(itemIndex);
-    console.log('handlehideCheckedItems ran after 1', store);
+  $('input[type=checkbox]').on('change', function() {
+    if ($(this).is(':checked')) {
+      $('.shopping-item__checked').parent().hide();
+    } else {
+      $('.shopping-item__checked').parent().show();
+    }
   });
-  renderShoppingList(store);
 }
 
 //Be able to delete items from the list 
@@ -125,6 +118,24 @@ function itemDeleted() {
   });
 }
 
+function getItemNames(arr, arrElement) {
+  let itemNames = arr.map(arrElement=>this.item);
+}
+
+function searchFilter() {
+  $('#js-shopping-list-form input:text').keyup(function() {
+    getItemNames(store);
+    let textInput = $(this).val();
+    getItemNames.forEach (function() {
+      if ($(this).text().search(new RegExp(textInput, 'i') < 0)) {
+        $(this).fadeOut();
+      } else {
+        $(this).show();
+      }
+    });
+  });
+}
+
 //Handle edit item form
 function handleEditItemForm() {
 
@@ -136,7 +147,7 @@ function handleShoppingList(){
   itemStrikethrough();
   itemDeleted();
   handleHideCheckedItems();
+  searchFilter();
 }
 
-handleShoppingList();
-
+handleShoppingList();    
